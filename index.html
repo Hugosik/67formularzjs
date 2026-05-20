@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Formularz o kursach 67</title>
+  </head>
+
+  <body>
+    <form>
+      <input type="text" id="imie" name="imie" />
+      <label for="imie">Imię</label><br /><br />
+      <input type="text" id="nazwisko" name="nazwisko" />
+      <label for="nazwisko">Nazwisko</label><br /><br />
+      <input type="number" id="wiek" name="wiek" />
+      <label for="wiek">Wiek</label><br /><br />
+      <input type="checkbox" id="kursReact" name="kursReact" />
+      <label for="kursReact">Kurs React.js</label><br /><br />
+      <input type="checkbox" id="kursJS" name="kursJS" />
+      <label for="kursJS">Kurs JavaScript</label><br /><br />
+      <label for="miasto">Miasto:</label>
+      <select id="miasto" name="miasto">
+        <option value="Katowicach">Katowice</option>
+        <option value="Warszawie">Warszawa</option>
+        <option value="Gdańsku">Gdańsk</option></select
+      ><br /><br />
+      <input type="radio" id="M" name="plec" value="mężczyzną" />
+      <label for="M">Mężczyzna</label><br />
+      <input type="radio" id="K" name="plec" value="kobietą" />
+      <label for="K">Kobieta</label><br /><br />
+      <label for="raty">Liczba rat:</label>
+      <input type="number" id="raty" name="raty" /><br /><br />
+      <input type="button" value="Oblicz" onclick="oblicz()" />
+      <div id="wynik"></div>
+    </form>
+    <script>
+      function oblicz() {
+        let liczbaRat = document.getElementById("raty").value;
+        let kursreact = document.getElementById("kursReact");
+        let kursjs = document.getElementById("kursJS");
+        let cena = 0;
+        let wynik = document.getElementById("wynik");
+        let miasto = document.getElementById("miasto").value;
+        let plecM = document.getElementById("M");
+        let plecK = document.getElementById("K");
+        let plec = "";
+        let imie = document.getElementById("imie").value;
+        let nazwisko = document.getElementById("nazwisko").value;
+        let wiek = document.getElementById("wiek").value;
+        if (kursreact.checked) {
+          cena += 5000;
+        }
+        if (kursjs.checked) {
+          cena += 3000;
+        }
+        if (plecM.checked) {
+          plec = plecM.value;
+        } else if (plecK.checked) {
+          plec = plecK.value;
+        }
+        let rata = cena / liczbaRat;
+        wynik.innerHTML =
+          "Nazywasz się " +
+          imie +
+          " " +
+          nazwisko +
+          ". Masz " +
+          wiek +
+          " lat. Jesteś " +
+          plec +
+          ". Kurs odbędzie się w: " +
+          miasto +
+          "  . Koszt całkowity: " +
+          cena +
+          " zł. Płacisz: " +
+          liczbaRat +
+          " rat po: " +
+          rata +
+          " zł.";
+      }
+    </script>
+  </body>
+</html>
